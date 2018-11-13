@@ -1,0 +1,2389 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "my mensa",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "GetMenuIntent",
+          "slots": [
+            {
+              "name": "date",
+              "type": "AMAZON.DATE"
+            }
+          ],
+          "samples": [
+            "gibt es am {date} zu essen",
+            "gibt es {date}",
+            "gibt es am {date}",
+            "was gibt es am {date}",
+            "was gibt es {date}",
+            "was gibt es am {date} zu essen",
+            "nach den {date} gerichten",
+            "was es {date} zu essen gibt",
+            "was gibt es {date} zu essen"
+          ]
+        },
+        {
+          "name": "GetCityIntent",
+          "slots": [
+            {
+              "name": "city",
+              "type": "AMAZON.EUROPE_CITY",
+              "samples": [
+                "In {city}",
+                "Sie befindet sich in {city}",
+                "Sie liegt in {city}",
+                "{city}"
+              ]
+            }
+          ],
+          "samples": [
+            "Die Mensa ist in {city}",
+            "Meine Mensa ist in {city}",
+            "Meine Mensa liegt in {city}"
+          ]
+        },
+        {
+          "name": "GetMensaIntent",
+          "slots": [
+            {
+              "name": "mensaName",
+              "type": "Mensa_Name_List"
+            }
+          ],
+          "samples": [
+            "Die Mensa lautet {mensaName}",
+            "Die Mensa heißt {mensaName}"
+          ]
+        },
+        {
+          "name": "AMAZON.YesIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NoIntent",
+          "samples": []
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "name": {
+                "value": "Mensa UniCampus Magdeburg"
+              }
+            },
+            {
+              "name": {
+                "value": "Magdeburg Herrenkurg"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Stendal"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Wernigerode"
+              }
+            },
+            {
+              "name": {
+                "value": "DomCafete Halberstadt"
+              }
+            },
+            {
+              "name": {
+                "value": "Hannover Hauptmensa"
+              }
+            },
+            {
+              "name": {
+                "value": "Hannover Contine"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa PZH"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Caballus"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa TiHo-Tower"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa HMTMH"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Ricklinger Stadtweg"
+              }
+            },
+            {
+              "name": {
+                "value": "Hannover  Mensa/Cafeteria Blumhardtstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Hannover  Mensa Große Pause"
+              }
+            },
+            {
+              "name": {
+                "value": "Hannover  Cafeteria Herrenhausen"
+              }
+            },
+            {
+              "name": {
+                "value": "Hannover Hauptmensa Marktstand"
+              }
+            },
+            {
+              "name": {
+                "value": "Hannover  Restaurant c. t."
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Beuth Hochschule für Technik Kurfürstenstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa HTW Wilhelminenhof"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa ASH Berlin Hellersdorf"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa FU II Otto-von-Simson-Straße"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa HWR Badensche Straße"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa HTW Treskowallee"
+              }
+            },
+            {
+              "name": {
+                "value": "Karlsruhe  Mensa Am Adenauerring"
+              }
+            },
+            {
+              "name": {
+                "value": "Karlsruhe  Mensa Moltke"
+              }
+            },
+            {
+              "name": {
+                "value": "Karlsruhe  Mensa Erzbergerstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Karlsruhe  Mensa Schloss Gottesaue"
+              }
+            },
+            {
+              "name": {
+                "value": "Pforzheim  Mensa Tiefenbronner Straße"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa TU Hardenbergstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa HU Spandauer Straße"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa EHB Teltower Damm"
+              }
+            },
+            {
+              "name": {
+                "value": "Pforzheim  Mensa Holzgartenstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa KHS Weißensee"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa FU Herrenhaus Düppel"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa HU Süd"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa HU Nord"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Beuth Hochschule für Technik Luxemburger Straße"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa HU Oase Adlershof"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa HfM Charlottenstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa FU Lankwitz Malteserstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Katholische HS für Sozialwesen"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Am Neuen Palais"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Kiepenheuerallee"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Wildau"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Brandenburg"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Golm"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Griebnitzsee"
+              }
+            },
+            {
+              "name": {
+                "value": "Leipzig  Mensa am Park"
+              }
+            },
+            {
+              "name": {
+                "value": "Leipzig  Mensa Academica"
+              }
+            },
+            {
+              "name": {
+                "value": "Leipzig  Mensa Am Elsterbecken"
+              }
+            },
+            {
+              "name": {
+                "value": "Leipzig Mensa An den Tierkliniken"
+              }
+            },
+            {
+              "name": {
+                "value": "Leipzig Mensa Liebigstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Leipzig Mensa Peterssteinweg"
+              }
+            },
+            {
+              "name": {
+                "value": "Leipzig Mensa/Cafetaria Schönauer Straße"
+              }
+            },
+            {
+              "name": {
+                "value": "Leipzig Cafeteria Dittrichring"
+              }
+            },
+            {
+              "name": {
+                "value": "Leipzig Cafeteria Philipp-Rosenthal-Straße"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Philosophenweg"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Ernst-Abbe-Platz"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Carl-Zeiss-Promenade"
+              }
+            },
+            {
+              "name": {
+                "value": "Dresden Zeltschloesschen"
+              }
+            },
+            {
+              "name": {
+                "value": "Dresden Alte Mensa"
+              }
+            },
+            {
+              "name": {
+                "value": "Dresden Mensa Reichenbachstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Dresden Mensologie"
+              }
+            },
+            {
+              "name": {
+                "value": "Dresden Mensa Siedepunkt"
+              }
+            },
+            {
+              "name": {
+                "value": "Tharandt Mensa TellerRandt"
+              }
+            },
+            {
+              "name": {
+                "value": "Dresden Mensa Palucca Schule"
+              }
+            },
+            {
+              "name": {
+                "value": "Dresden Mensa WUeins"
+              }
+            },
+            {
+              "name": {
+                "value": "Dresden Mensa Stimm-Gabel"
+              }
+            },
+            {
+              "name": {
+                "value": "Dresden Mensa Johannesstadt"
+              }
+            },
+            {
+              "name": {
+                "value": "Dresden BioMensa U-Boot"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Zittau"
+              }
+            },
+            {
+              "name": {
+                "value": "Dresden Mensa Sport"
+              }
+            },
+            {
+              "name": {
+                "value": "Dresden Mensa Kreuzgymnasium"
+              }
+            },
+            {
+              "name": {
+                "value": "Aachen Forum Cafete"
+              }
+            },
+            {
+              "name": {
+                "value": "Aachen Bistro Templergraben"
+              }
+            },
+            {
+              "name": {
+                "value": "Aachen Mensa Ahorn"
+              }
+            },
+            {
+              "name": {
+                "value": "Aachen Mensa Vita"
+              }
+            },
+            {
+              "name": {
+                "value": "Aachen Mensa Bayernallee"
+              }
+            },
+            {
+              "name": {
+                "value": "Aachen Mensa EUPS"
+              }
+            },
+            {
+              "name": {
+                "value": "Aachen Gastro Goethe"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Jülich"
+              }
+            },
+            {
+              "name": {
+                "value": "Bamberg Mensa Austraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Bamberg Mensa Feldkirchenstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Aschaffenburg"
+              }
+            },
+            {
+              "name": {
+                "value": "Bistro Tasty Studio Babelsberg"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Schweinfurt"
+              }
+            },
+            {
+              "name": {
+                "value": "Würzburg Mensa Burse"
+              }
+            },
+            {
+              "name": {
+                "value": "Würzburg Mensa am Studentenhaus"
+              }
+            },
+            {
+              "name": {
+                "value": "Würzburg Mensa Augenklinik"
+              }
+            },
+            {
+              "name": {
+                "value": "Würzburg Mensa Josef-Schneider-Straße "
+              }
+            },
+            {
+              "name": {
+                "value": "Ulf's Café (HPI Cafeteria)"
+              }
+            },
+            {
+              "name": {
+                "value": "Marburg Mensa Erlenring"
+              }
+            },
+            {
+              "name": {
+                "value": "Marburg Mensa Lahnberge"
+              }
+            },
+            {
+              "name": {
+                "value": "Marburg Philipps Bistro"
+              }
+            },
+            {
+              "name": {
+                "value": "Marburg Mo's Diner"
+              }
+            },
+            {
+              "name": {
+                "value": "Hamburg Mensa Armgartstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Hamburg Mensa Bergedorf"
+              }
+            },
+            {
+              "name": {
+                "value": "Hamburg Mensa Berliner Tor"
+              }
+            },
+            {
+              "name": {
+                "value": "Hamburg Mensa Botanischer Garten"
+              }
+            },
+            {
+              "name": {
+                "value": "Hamburg Mensa Bucerius Law School"
+              }
+            },
+            {
+              "name": {
+                "value": "Hamburg Café Jungiusstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Hamburg Café Alexanderstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Hamburg Mensa Campus"
+              }
+            },
+            {
+              "name": {
+                "value": "Hamburg Mensa Finkenau"
+              }
+            },
+            {
+              "name": {
+                "value": "Hamburg Mensa Geomatikum"
+              }
+            },
+            {
+              "name": {
+                "value": "Hamburg Mensa Harburg "
+              }
+            },
+            {
+              "name": {
+                "value": "Hamburg Mensa Philosophenturm"
+              }
+            },
+            {
+              "name": {
+                "value": "Hamburg Mensa Stellingen"
+              }
+            },
+            {
+              "name": {
+                "value": "Hamburg Mensa Studierendenhaus"
+              }
+            },
+            {
+              "name": {
+                "value": "München Mensa Leopoldstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "München Mensa Martinsried"
+              }
+            },
+            {
+              "name": {
+                "value": "München Mensaria Großhadern"
+              }
+            },
+            {
+              "name": {
+                "value": "München StuBistro Schellingstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "München Mensa Arcisstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Garching Mensa Garching"
+              }
+            },
+            {
+              "name": {
+                "value": "Freising Mensa Weihenstephan"
+              }
+            },
+            {
+              "name": {
+                "value": "München Mensa Lothstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "München Mensa Pasing"
+              }
+            },
+            {
+              "name": {
+                "value": "Garching Cafeteria Mensa Garching"
+              }
+            },
+            {
+              "name": {
+                "value": "Freising Cafeteria Akademie"
+              }
+            },
+            {
+              "name": {
+                "value": "Garching Cafeteria Boltzmannstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Nordhäuser Straße"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Altonaer Straße"
+              }
+            },
+            {
+              "name": {
+                "value": "NANOteria"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Ehrenberg"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa am Park"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Berufsakademie Gera "
+              }
+            },
+            {
+              "name": {
+                "value": "Braunschweig Mensa 1 (Mittag)"
+              }
+            },
+            {
+              "name": {
+                "value": "Braunschweig Mensa 1 (Abend)"
+              }
+            },
+            {
+              "name": {
+                "value": "Braunschweig Mensa 2"
+              }
+            },
+            {
+              "name": {
+                "value": "Braunschweig Mensa HBK"
+              }
+            },
+            {
+              "name": {
+                "value": "Magdeburg Mensa UniCampus Oben"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Claustal"
+              }
+            },
+            {
+              "name": {
+                "value": "Hildesheim Unimensa"
+              }
+            },
+            {
+              "name": {
+                "value": "Hildesheim Mensa Hohnsen (HAWK)"
+              }
+            },
+            {
+              "name": {
+                "value": "Hildesheim Bistro-Shop Lübecker Straße"
+              }
+            },
+            {
+              "name": {
+                "value": "Holzminden Mensa HAWK "
+              }
+            },
+            {
+              "name": {
+                "value": "Lüneburg Campus-Mensa"
+              }
+            },
+            {
+              "name": {
+                "value": "Lüneburg Mensa Rotes Feld"
+              }
+            },
+            {
+              "name": {
+                "value": "Wolfenbüttel Mensa Ostfalia"
+              }
+            },
+            {
+              "name": {
+                "value": "Uni Mensa"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Neustadtswall"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Werderstrasse"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa am Airport"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Bremerhaven"
+              }
+            },
+            {
+              "name": {
+                "value": "Cafeteria GW2"
+              }
+            },
+            {
+              "name": {
+                "value": "Darmstadt Mensa Stadtmitte"
+              }
+            },
+            {
+              "name": {
+                "value": "Darmstadt Mensa Lichtwiese"
+              }
+            },
+            {
+              "name": {
+                "value": "Darmstadt Mensa Schöfferstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Darmstadt Mensa Dieburg"
+              }
+            },
+            {
+              "name": {
+                "value": "Darmstadt Bistro Haardtring"
+              }
+            },
+            {
+              "name": {
+                "value": "Braunschweig 360 Grad"
+              }
+            },
+            {
+              "name": {
+                "value": "Göttingen Zentralmensa"
+              }
+            },
+            {
+              "name": {
+                "value": "Göttingen Nordmensa"
+              }
+            },
+            {
+              "name": {
+                "value": "Göttingen Mensa am Turm"
+              }
+            },
+            {
+              "name": {
+                "value": "Göttingen Mensa Italia"
+              }
+            },
+            {
+              "name": {
+                "value": "Göttingen Bistro HAWK"
+              }
+            },
+            {
+              "name": {
+                "value": "Hamburg Cafe am Mittelweg"
+              }
+            },
+            {
+              "name": {
+                "value": "Hamburg Cafe CFEl"
+              }
+            },
+            {
+              "name": {
+                "value": "Hamburg Mensa HCU"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Academica"
+              }
+            },
+            {
+              "name": {
+                "value": "Kochwerk Elbe"
+              }
+            },
+            {
+              "name": {
+                "value": "Konstanz HTWG"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa UNI Regensburg"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa OTH Regensburg"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa UNI Passau"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa HS Landshut"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa TH Deggendorf"
+              }
+            },
+            {
+              "name": {
+                "value": "Kochwerk Alster"
+              }
+            },
+            {
+              "name": {
+                "value": "Dresden Mensa Brühl"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa NW 1"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Rüsselsheim"
+              }
+            },
+            {
+              "name": {
+                "value": "Uni-Bielefeld Mensa"
+              }
+            },
+            {
+              "name": {
+                "value": "mensa accent"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Pi x Gaumen"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Casino"
+              }
+            },
+            {
+              "name": {
+                "value": "Cafeteria LEVEL"
+              }
+            },
+            {
+              "name": {
+                "value": "Cafeteria Darwins"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Anbau Casino"
+              }
+            },
+            {
+              "name": {
+                "value": "Cafeteria DASEIN"
+              }
+            },
+            {
+              "name": {
+                "value": "Cafeteria Bockenheim"
+              }
+            },
+            {
+              "name": {
+                "value": "Café HOCHFORM"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa essWERK"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa HfMDK"
+              }
+            },
+            {
+              "name": {
+                "value": "Cafeteria HfG"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa POINT"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa am Ring"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa am Aasee"
+              }
+            },
+            {
+              "name": {
+                "value": "Bistro Denkpause"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa da Vinci"
+              }
+            },
+            {
+              "name": {
+                "value": "Rosenheim StuBistro Mensa Rosenheim"
+              }
+            },
+            {
+              "name": {
+                "value": "StuCafé Adalbertstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Freising StuCafé Mensa-WST"
+              }
+            },
+            {
+              "name": {
+                "value": "München StuCafé Karlstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Bispinghof"
+              }
+            },
+            {
+              "name": {
+                "value": "Erfrischungshalle"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Burg"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Franckesche Stiftungen"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Merseburg"
+              }
+            },
+            {
+              "name": {
+                "value": "Heidemensa"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Neuwerk"
+              }
+            },
+            {
+              "name": {
+                "value": "Weinbergmensa"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Bernburg"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Dessau"
+              }
+            },
+            {
+              "name": {
+                "value": "Harzmensa"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Fasanerieallee"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Tulpe"
+              }
+            },
+            {
+              "name": {
+                "value": "Kantine KIT Campus Nord"
+              }
+            },
+            {
+              "name": {
+                "value": "Erlangen Südmensa"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa und Cafeteria Lübeck"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa/Mensacafe Saarbrücken"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Langemarckplatz"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Insel Schütt"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Regensburger Straße"
+              }
+            },
+            {
+              "name": {
+                "value": "Ausgabemensa St. Paul"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensateria Ohm"
+              }
+            },
+            {
+              "name": {
+                "value": "Cafeteria Come IN Hohfederstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Cafeteria Bärenschanzstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Cafeteria Eichstätt"
+              }
+            },
+            {
+              "name": {
+                "value": "Cafeteria Ingolstadt"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensateria Gastwirtschaft zum Adler Triesdorf"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Ansbach"
+              }
+            },
+            {
+              "name": {
+                "value": "Heilbronn Mensa Bildungscampus/Europaplatz"
+              }
+            },
+            {
+              "name": {
+                "value": "Heilbronn Mensa Sontheim"
+              }
+            },
+            {
+              "name": {
+                "value": "Heidelberg Mensa Im Neuenheimer Feld 304"
+              }
+            },
+            {
+              "name": {
+                "value": "Künzelsau Mensa Reinhold-Würth-Hochschule"
+              }
+            },
+            {
+              "name": {
+                "value": "Heidelberg Triplex-Mensa am Uniplatz"
+              }
+            },
+            {
+              "name": {
+                "value": "Heidelberg zeughaus-Mensa im Marstall"
+              }
+            },
+            {
+              "name": {
+                "value": "Mannheim Mensaria Metropol"
+              }
+            },
+            {
+              "name": {
+                "value": "Mannheim Cafeteria KUBUS"
+              }
+            },
+            {
+              "name": {
+                "value": "Mannheim Mensa am Schloss"
+              }
+            },
+            {
+              "name": {
+                "value": "Mannheim Cafeteria Musikhochschule"
+              }
+            },
+            {
+              "name": {
+                "value": "Mannheim Mensaria Wohlgelegen"
+              }
+            },
+            {
+              "name": {
+                "value": "Mannheim EO (Schloss Ehrenhof)"
+              }
+            },
+            {
+              "name": {
+                "value": "Mannheim Mensa Hochschule Mannheim"
+              }
+            },
+            {
+              "name": {
+                "value": "Kiel Mensa I am Westring"
+              }
+            },
+            {
+              "name": {
+                "value": "Kiel Mensa II"
+              }
+            },
+            {
+              "name": {
+                "value": "Chemnitz Reichenhainer Straße Mensa"
+              }
+            },
+            {
+              "name": {
+                "value": "Chemnitz Straße der Nationen Mensa"
+              }
+            },
+            {
+              "name": {
+                "value": "Zwickau Ring Cafeteria"
+              }
+            },
+            {
+              "name": {
+                "value": "Abendmensa OTH Regensburg"
+              }
+            },
+            {
+              "name": {
+                "value": "Chemnitz Reichenhainer Straße Cafeteria"
+              }
+            },
+            {
+              "name": {
+                "value": "Chemnitz Straße der Nationen Cafeteria"
+              }
+            },
+            {
+              "name": {
+                "value": "Zwickau Ring Mensa"
+              }
+            },
+            {
+              "name": {
+                "value": "Zwickau Scheffelberg Mensa"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa WZ Straubing"
+              }
+            },
+            {
+              "name": {
+                "value": "Cafeteria Nikolakloster Passau"
+              }
+            },
+            {
+              "name": {
+                "value": "Cafeteria Prüfening Regensburg"
+              }
+            },
+            {
+              "name": {
+                "value": "Cafeteria Philosophie-Theologie (PT) Regensburg"
+              }
+            },
+            {
+              "name": {
+                "value": "Cafeteria Chemie Regensburg"
+              }
+            },
+            {
+              "name": {
+                "value": "Cafeteria Sport Regensburg"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Flensburg"
+              }
+            },
+            {
+              "name": {
+                "value": "Bistro Coerdehof"
+              }
+            },
+            {
+              "name": {
+                "value": "Bistro Durchblick"
+              }
+            },
+            {
+              "name": {
+                "value": "Bistro Frieden"
+              }
+            },
+            {
+              "name": {
+                "value": "Bistro Hüfferstift"
+              }
+            },
+            {
+              "name": {
+                "value": "Bistro KaBu"
+              }
+            },
+            {
+              "name": {
+                "value": "Bistro Katholische Hochschule"
+              }
+            },
+            {
+              "name": {
+                "value": "Bistro Oeconomicum"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Steinfurt"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Universitätsstraße Düsseldorf"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Kamp-Lintfort"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Campus Derendorf"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Obergath Krefeld"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Frankenring Krefeld"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Sommerdeich Kleve"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Rheydter Straße Mönchengladbach"
+              }
+            },
+            {
+              "name": {
+                "value": "restaurant & bar campus vita Düsseldorf"
+              }
+            },
+            {
+              "name": {
+                "value": "Essenausgabe Süd Düsseldorf"
+              }
+            },
+            {
+              "name": {
+                "value": "Kunstakademie Düsseldorf"
+              }
+            },
+            {
+              "name": {
+                "value": "Musikhochschule Düsseldorf"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Westerberg"
+              }
+            },
+            {
+              "name": {
+                "value": "Rostock Mensa Süd"
+              }
+            },
+            {
+              "name": {
+                "value": "Campus Cafeteria Einstein"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Multiple Choice"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Kleine Ulme"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Ulme 69"
+              }
+            },
+            {
+              "name": {
+                "value": "Campus Mensa Wismar"
+              }
+            },
+            {
+              "name": {
+                "value": "Cafeteria FH Lampingstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Hochschule OWL Lemgo"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Hochschule OWL Höxter"
+              }
+            },
+            {
+              "name": {
+                "value": "Uni-Bielefeld Westend"
+              }
+            },
+            {
+              "name": {
+                "value": "Casino Cafeteria"
+              }
+            },
+            {
+              "name": {
+                "value": "Köln Mensa Südstadt"
+              }
+            },
+            {
+              "name": {
+                "value": "Köln Mensa Zülpicher Straße"
+              }
+            },
+            {
+              "name": {
+                "value": "Köln Mensa Kunsthochschule Medien"
+              }
+            },
+            {
+              "name": {
+                "value": "Köln Mensa Robert-Koch-Straße"
+              }
+            },
+            {
+              "name": {
+                "value": "Köln Mensa Deutz"
+              }
+            },
+            {
+              "name": {
+                "value": "Köln Mensa Musikhochschule"
+              }
+            },
+            {
+              "name": {
+                "value": "Köln Mensa am Sportpark Müngersdorf"
+              }
+            },
+            {
+              "name": {
+                "value": "Gummersbach Mensa Gummersbach"
+              }
+            },
+            {
+              "name": {
+                "value": "Köln Café Himmelsblick Claudiusstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Stuttgart Mitte Mensa 1 (Holzgartenstraße)"
+              }
+            },
+            {
+              "name": {
+                "value": "Ludwigsburg Mensa Ludwigsburg"
+              }
+            },
+            {
+              "name": {
+                "value": "Stuttgart Nord Mensa Kunstakademie"
+              }
+            },
+            {
+              "name": {
+                "value": "Stuttgart Mitte Mensa Musikhochschule"
+              }
+            },
+            {
+              "name": {
+                "value": "Esslingen Mensa Stadtmitte - Kanalstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Esslingen Mensa Flandernstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Stuttgart Vaihingen Mensa 2"
+              }
+            },
+            {
+              "name": {
+                "value": "Coffeebar Beuth Hochschule"
+              }
+            },
+            {
+              "name": {
+                "value": "Coffeebar Beuth Hochschule Haus Grashof"
+              }
+            },
+            {
+              "name": {
+                "value": "Coffeebar EHB Teltower Damm"
+              }
+            },
+            {
+              "name": {
+                "value": "Coffeebar HfM Charlottenstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Coffeebar HTW Wilhelminenhof"
+              }
+            },
+            {
+              "name": {
+                "value": "Coffeebar HU c.t."
+              }
+            },
+            {
+              "name": {
+                "value": "Coffeebar HU Mensa Nord"
+              }
+            },
+            {
+              "name": {
+                "value": "Coffeebar HU Oase Adlershof"
+              }
+            },
+            {
+              "name": {
+                "value": "Coffeebar HWR Alt-Friedrichsfelde"
+              }
+            },
+            {
+              "name": {
+                "value": "Coffeebar HWR Badensche Straße"
+              }
+            },
+            {
+              "name": {
+                "value": "Coffeebar Mensa FU II"
+              }
+            },
+            {
+              "name": {
+                "value": "Coffeebar Mensa Lankwitz"
+              }
+            },
+            {
+              "name": {
+                "value": "Coffeebar TU Hardenbergstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Foodorama Restaurant Coffeebar & Lounge"
+              }
+            },
+            {
+              "name": {
+                "value": "Personalrestaurant Aubrücke"
+              }
+            },
+            {
+              "name": {
+                "value": "Personalrestaurant AMAG"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant visavis"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant Berner Technologiepark"
+              }
+            },
+            {
+              "name": {
+                "value": "Personalrestaurant Bruker BioSpin"
+              }
+            },
+            {
+              "name": {
+                "value": "Personalrestaurant VIVA"
+              }
+            },
+            {
+              "name": {
+                "value": "SV Restaurant Cockpit"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant Touch and Go"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant daylis Dübendorf"
+              }
+            },
+            {
+              "name": {
+                "value": "Personalrestaurant Fliegertreff"
+              }
+            },
+            {
+              "name": {
+                "value": "SV Restaurant BASF Kaisten"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant Empa/Eawag"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant GIARDINO Zürich"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant neuland"
+              }
+            },
+            {
+              "name": {
+                "value": "RistorETA"
+              }
+            },
+            {
+              "name": {
+                "value": "Cafeteria ewz"
+              }
+            },
+            {
+              "name": {
+                "value": "Personalrestaurant Garaventa AG"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant CasAroma"
+              }
+            },
+            {
+              "name": {
+                "value": "Personalrestaurant Vetropick"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant GIARDINO Gümligen"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant HP Dübendorf"
+              }
+            },
+            {
+              "name": {
+                "value": "Personalrestaurant Aarehuus"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant Reiterstrasse"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant daylis Erziehungsdirektion des Kantons Bern"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant Aabächli"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant five moods"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant Optik-Hus"
+              }
+            },
+            {
+              "name": {
+                "value": "SV Restaurant Siesta"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant Meyer Burger AG"
+              }
+            },
+            {
+              "name": {
+                "value": "Cafeteria Gourmetro"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant Tiergarten"
+              }
+            },
+            {
+              "name": {
+                "value": "Personalrestaurant Time-Out"
+              }
+            },
+            {
+              "name": {
+                "value": "SV Restaurant Manegg"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant PwC-Inn"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant Oase"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant Engehalde"
+              }
+            },
+            {
+              "name": {
+                "value": "Level3"
+              }
+            },
+            {
+              "name": {
+                "value": "eat&meet"
+              }
+            },
+            {
+              "name": {
+                "value": "PostWest"
+              }
+            },
+            {
+              "name": {
+                "value": "Personalrestaurant Insieme"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant Bella Vista"
+              }
+            },
+            {
+              "name": {
+                "value": "SBB Stadtbistro Brig"
+              }
+            },
+            {
+              "name": {
+                "value": "SV Restaurant Scintilla"
+              }
+            },
+            {
+              "name": {
+                "value": "Personalrestaurant Luppmenoase"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant Hangar 11"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant daylis Strassenverkehrsamt des Kantons Zürich"
+              }
+            },
+            {
+              "name": {
+                "value": "the headQuarters"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant Tazino"
+              }
+            },
+            {
+              "name": {
+                "value": "Eat & Meet"
+              }
+            },
+            {
+              "name": {
+                "value": "Personalrestaurant repos"
+              }
+            },
+            {
+              "name": {
+                "value": "wipfrestaurant"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant Chez Würth"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Alte Kantonsschule Aarau"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Neue Kantonsschule Aarau"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Bäumlihof"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant Biozentrum"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Departement für Physik"
+              }
+            },
+            {
+              "name": {
+                "value": "Cafeteria La strada"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Uni Basel"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Freies Gymnasium Bern"
+              }
+            },
+            {
+              "name": {
+                "value": "Bistro Gymnasium Lerbermatt"
+              }
+            },
+            {
+              "name": {
+                "value": "Bistro medi Bern"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa BFH AHB Biel"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Kantonsschule Zürcher Unterland"
+              }
+            },
+            {
+              "name": {
+                "value": "EBZ Gourmetina"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant Baumeister Kurszentrum"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa BBZ Grenchen"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Kantonsschule Heerbrugg"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Gymnasium Immensee"
+              }
+            },
+            {
+              "name": {
+                "value": "Hochschule Kempten"
+              }
+            },
+            {
+              "name": {
+                "value": "Uni Bremen NW1"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Uni Bremen"
+              }
+            },
+            {
+              "name": {
+                "value": "SV (Schweiz AG) Restaurant Ambrosia"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Gymnasium Münchenstein"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa FHNW"
+              }
+            },
+            {
+              "name": {
+                "value": "Cafeteria BBZ Olten"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Kantonsschule Olten"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa HSR Hochschule Rapperswil"
+              }
+            },
+            {
+              "name": {
+                "value": "BZF Rheinfelden"
+              }
+            },
+            {
+              "name": {
+                "value": "Bistro Gymnasium und WMS Thun-Schadau"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant inContro Berufsfachschulen Thun"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Kantonsschule Limmattal"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant Campus FHNW Brugg-Windisch"
+              }
+            },
+            {
+              "name": {
+                "value": "Berufsfachschule BFS Winterthur"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Kantonsschule Im Lee"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Kantonsschule Rychenberg"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa ZAG"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant TBZ Technische Berufsschule Zürich"
+              }
+            },
+            {
+              "name": {
+                "value": "SV (Schweiz) AG Mensa Kantonsschule Zug"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant AXA Museumstrasse"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant Grüze"
+              }
+            },
+            {
+              "name": {
+                "value": "Culinarium St. Alban"
+              }
+            },
+            {
+              "name": {
+                "value": "Culinarium Time Out"
+              }
+            },
+            {
+              "name": {
+                "value": "UBS Restaurant Elite"
+              }
+            },
+            {
+              "name": {
+                "value": "Gewerbliche Berufsschule Chur"
+              }
+            },
+            {
+              "name": {
+                "value": "Culinarium Berner Kantonalbank"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Polyterrasse Mittag"
+              }
+            },
+            {
+              "name": {
+                "value": "Clausiusbar"
+              }
+            },
+            {
+              "name": {
+                "value": "Personalrestaurant Bucher"
+              }
+            },
+            {
+              "name": {
+                "value": "KV Zürich Business School"
+              }
+            },
+            {
+              "name": {
+                "value": "PostGusto"
+              }
+            },
+            {
+              "name": {
+                "value": "RESTAURANT GIALLO"
+              }
+            },
+            {
+              "name": {
+                "value": "Cafeteria Westpark"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant Biopark"
+              }
+            },
+            {
+              "name": {
+                "value": "Restaurant Gioia"
+              }
+            },
+            {
+              "name": {
+                "value": "G-ESSbar"
+              }
+            },
+            {
+              "name": {
+                "value": "Wilhelm Gastronomie im FMI Gebäude der TUM Garching"
+              }
+            },
+            {
+              "name": {
+                "value": "Konradhofer Catering - Betriebskantine IPP"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Homburg"
+              }
+            },
+            {
+              "name": {
+                "value": "Cafeteria Hochschule für Musik Saar"
+              }
+            },
+            {
+              "name": {
+                "value": "Cafeteria HTW Göttelborn"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensagarten Saarbrücken"
+              }
+            },
+            {
+              "name": {
+                "value": "Mannheim Eppelheim Mensa DHBW"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Schlossgarten"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Vechta"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Haste"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Uni Augsburg"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa HS Augsburg"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa HS Neu-Ulm"
+              }
+            },
+            {
+              "name": {
+                "value": "Cafeteria HS Augsburg"
+              }
+            },
+            {
+              "name": {
+                "value": "Coffeebar der Mensa TU Hauptgebäude Wetterleuchten"
+              }
+            },
+            {
+              "name": {
+                "value": "Coffeebar FU Wirtschaftswissenschaften"
+              }
+            },
+            {
+              "name": {
+                "value": "Coffeebar HU Jacob und Wilhelm Grimm Zentrum"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Charité Zahnklinik"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa FU Ihnestraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa FU Koserstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa FU Pharmazie"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa FU Rechtswissenschaft"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa HfM Neuer Marstall"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa TU Ackerstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa TU Architektur"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa TU Marchstraße"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa TU Skyline"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa UdK „Jazz-Mensa“"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa UdK Lietzenburger Straße"
+              }
+            },
+            {
+              "name": {
+                "value": "Mensa Veggie Nummer 1 - Die grüne Mensa"
+              }
+            }
+          ],
+          "name": "Mensa_Name_List"
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "GetMensaIntent",
+          "confirmationRequired": false,
+          "slots": [
+            {
+              "name": "mensaName",
+              "type": "Mensa_Name_List",
+              "elicitationRequired": false,
+              "confirmationRequired": false
+            }
+          ]
+        },
+        {
+          "name": "GetCityIntent",
+          "confirmationRequired": false,
+          "slots": [
+            {
+              "name": "city",
+              "type": "AMAZON.EUROPE_CITY",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.958431699984.871177266829"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.1155708251504.433245662692",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "In welcher Stadt befindet sich deine Mensa?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.958431699984.871177266829",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Wo liegt die Mensa?"
+          }
+        ]
+      }
+    ]
+  }
+}

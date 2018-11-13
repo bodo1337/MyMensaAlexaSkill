@@ -1,0 +1,76 @@
+{
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "de-DE": {
+          "summary": "Mit MyMensa bekommst du die Speisekarten von über 450 Mensen frisch auf dein Alexa.",
+          "examplePhrases": [
+            "Alexa, starte my Mensa.",
+            "Starte My Mensa und frage was es heute zu essen gibt.",
+            "Starte My Mensa und sage meine mensa liegt in darmstadt."
+          ],
+          "keywords": [
+            "mensa",
+            "speiseplan",
+            "uni",
+            "studentenwerk",
+            "studierendenwerk",
+            "fh",
+            "göttingen",
+            "dreseden",
+            "köln",
+            "mainz",
+            "marburg",
+            "freiburg",
+            "jena",
+            "garching",
+            "leipzig",
+            "würzburg",
+            "halle",
+            "hhu",
+            "rostock",
+            "hamburg",
+            "essen",
+            "mensaplan",
+            "mensas",
+            "tu",
+            "campus",
+            "universität",
+            "fachhochschule",
+            "mymensa",
+            "tum",
+            "kantine"
+          ],
+          "name": "MyMensa - Dein Mensa-Speiseplan",
+          "smallIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/7086/510c9e1fe3844931a63683d815dc5714/APP_ICON?versionId=xKbcHtebYsxxWrZuxhZ2tgM.xdmkn8H4&AWSAccessKeyId=AKIAJFEYRBGIHK2BBYKA&Expires=1542217533&Signature=GIEEN9FJ5h7PXFJCeMQ9m9D4MdQ%3D",
+          "description": "Mit MyMensa bekommst du die Speisekarten von über 450 Mensen frisch auf deine Alexa.\n\nMyMensa benutzt die API von openmensa.org, daher kannst du die Speisekarte von über 450 Mensen in Deutschland, Schweiz und Östereich abrufen.\n\nIcon von Freepik (www.flaticon.com)",
+          "largeIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/cc9b/36955a84cd41446b8e2d5a7988cade75/APP_ICON_LARGE?versionId=dpLPKedmQaKdXCijeWT8X3jOD9iIXHRN&AWSAccessKeyId=AKIAJFEYRBGIHK2BBYKA&Expires=1542217533&Signature=tKB%2BAbKUiDO4%2FKGCdvP871Wtt6g%3D"
+        }
+      },
+      "isAvailableWorldwide": false,
+      "testingInstructions": "This Skill can give you the menu for over 450 canteens in Germany, Austria, and Swiss.\n\nYou can get the available canteens from your city with this example \"Welche Mensen gibt es in Darmstadt\".\nYou can set your canteen with the following: \"Meine Mensa heißt Lichtwiese Darmstadt\"\nYou can get the meals of a date in this week, if you don't include a date it will default to today: \"Was gibt es am Freitag zu essen?\"",
+      "category": "RESTAURANT_BOOKING_INFO_AND_REVIEW",
+      "distributionCountries": [
+        "DE",
+        "AT",
+        "CH"
+      ]
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "sourceDir": ".\\lambda\\eu-west-1_MyMensaLambda"
+        },
+        "interfaces": []
+      }
+    },
+    "manifestVersion": "1.0",
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "isExportCompliant": true,
+      "containsAds": false,
+      "isChildDirected": false,
+      "usesPersonalInfo": false
+    }
+  }
+}
