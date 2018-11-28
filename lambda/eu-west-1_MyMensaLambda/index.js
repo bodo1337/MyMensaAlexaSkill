@@ -301,26 +301,13 @@ const LocalizationInterceptor = {
 function getMensaMeals(id, date, requestAttributes) {
     return new Promise((resolve, reject) => {
         axios.get(`https://openmensa.org/api/v2/canteens/${id}/days/${date}/meals`).then((response) => {
-            let mealNames = response.data.map(function (item) {
-                return item['name'];
+            let mealNameList = response.data.map(function (item) {
+                return item['name'].replace(/\,/g, '').replace('!', '');
             });
-            //TODO better solution
-            for (let i = 0; i < mealNames.length; i++) {
-                let mealName = mealNames[i];
-                mealName = mealName.replace(/\,/g, "");
-
-                if (i == 0) {
-                    mealsString = mealName;
-                } else {
-                    mealsString = mealsString + ", " + mealName;
-                }
-                if (i + 1 == mealNames.length) {
-                    mealsString = mealsString + ".";
-                }
-            }
+            let mealsString = mealNameList.join(', ') + ".";
             resolve(mealsString);
         }).catch((error) => {
-            console.log("ERROR in getMensaMeals: ", error);
+            console.log("ERROR in getMensaMeals(): ", error);
             console.log("ID: " + id + " date: " + date);
             if (error.response.status == "404") {
                 reject(requestAttributes.t('NO_MEALS_ON_DATE'));
