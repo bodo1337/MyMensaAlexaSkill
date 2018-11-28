@@ -42,7 +42,8 @@ const GetCityIntentHandler = {
         if (citySlot[citySlot.length - 1] == '.' || citySlot[citySlot.length - 1] == '!' || citySlot[citySlot.length - 1] == '?') {
             citySlot = citySlot.slice(0, -1);
         }
-        await mensaInCity(citySlot).then((res) => {
+
+        await mensaInCity(citySlot, requestAttributes).then((res) => {
             if (res.length == 0) {
                 response = `Ich habe leider keine Mensa in ${citySlot} gefunden.`;
             } else {
@@ -133,7 +134,7 @@ const GetMenuIntentHandler = {
         let attributes = await attributesManager.getPersistentAttributes();
 
         if (attributes.mensaID && attributes.mensaID > 0) {
-            await getMensaMeals(attributes.mensaID, dateSlot, requestAttributes).then((res) => { //TODO ERROR CATCH
+            await getMensaMeals(attributes.mensaID, dateSlot, requestAttributes).then((res) => {
                 if (today == dateSlot) {
                     response = requestAttributes.t('TODAY_MEAL') + res;
                 } else {
@@ -145,9 +146,9 @@ const GetMenuIntentHandler = {
         } else {
             response = requestAttributes.t('MENSA_NOT_SET')
             return responseBuilder
-            .speak(response)
-            .reprompt(requestAttributes.t('DEFAULT_REPROMPT'))
-            .getResponse();
+                .speak(response)
+                .reprompt(requestAttributes.t('DEFAULT_REPROMPT'))
+                .getResponse();
         }
 
         return responseBuilder
@@ -307,7 +308,7 @@ function getMensaMeals(id, date, requestAttributes) {
             for (let i = 0; i < mealNames.length; i++) {
                 let mealName = mealNames[i];
                 mealName = mealName.replace(/\,/g, "");
-                
+
                 if (i == 0) {
                     mealsString = mealName;
                 } else {
@@ -330,28 +331,28 @@ function getMensaMeals(id, date, requestAttributes) {
     })
 }
 
-async function mensaInCity(city) {
-    try {
-        let stillResults = true;
+async function mensaInCity(city, requestAttributes) {
+    return new Promise(async (resolve, reject) => {
         let counter = 1;
         let allResults = [];
-        while (stillResults) {
-            let response = await axios.get(`http://openmensa.org/api/v2/canteens?page=${counter}`);
-            counter++;
-            allResults = allResults.concat(response.data)
-            if (response.data.length == 0) {
-                stillResults = false;
-            }
+        while (true) {
+            await axios.get(`http://openmensa.org/api/v2/canteens?page=${counter++}`).then((response) => {
+                allResults = allResults.concat(response.data);
+                if (response.data.length == 0) {
+                    allResults = allResults.filter((mensa) => {
+                        city = city.toLowerCase();
+                        return (mensa.name.toLowerCase().includes(city) || mensa.address.toLowerCase().includes(city) || mensa.city.toLowerCase().includes(city));
+                    });
+                    resolve(allResults);
+                }
+            }).catch((error) => {
+                console.error("error in mensainCity(): " + error);
+                console.log("City: " + city);
+                reject(requestAttributes.t('ERROR_HARD'));
+            });
         }
-        allResults = allResults.filter((mensa) => {
-            city = city.toLowerCase();
-            return (mensa.name.toLowerCase().includes(city) || mensa.address.toLowerCase().includes(city) || mensa.city.toLowerCase().includes(city));
-        });
-        return (allResults);
-    } catch (error) {
-        console.error(error);
-        return Promise.reject(new Error("Es ist ein Fehler aufgetreten."));
-    }
+
+    });
 }
 
 async function getMensaID(mensaName) {
