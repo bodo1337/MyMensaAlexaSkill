@@ -136,7 +136,7 @@ const GetMenuIntentHandler = {
                 if (today == dateSlot) {
                     response = requestAttributes.t('TODAY_MEAL') + res;
                 } else {
-                    response = requestAttributes.t('DAY_MEAL_1') + weekday(dateSlot) + requestAttributes.t('DAY_MEAL_2') + res;
+                    response = requestAttributes.t('DAY_MEAL_1') + weekday(dateSlot, requestAttributes) + requestAttributes.t('DAY_MEAL_2') + res;
                 }
             })
         } else {
@@ -285,9 +285,6 @@ const LocalizationInterceptor = {
                 postProcess: 'sprintf',
                 sprintf: values,
             });
-            if (Array.isArray(value)) {
-                return value[Math.floor(Math.random() * value.length)];
-            }
             return value;
         };
         const attributes = handlerInput.attributesManager.getRequestAttributes();
@@ -315,7 +312,16 @@ const deData = {
         MENSA_SAVE_SUCCESS: 'Deine Mensa wurde gespeichert. Du kannst jetzt nach deinem aktuellen Speiseplan fragen.',
         MENSA_DECLINED: 'Mensa nicht gespeichert.',
         NO_MENSA_FOUND1: '',
-        NO_MENSA_FOUND2: ''
+        NO_MENSA_FOUND2: '',
+        WEEKDAYS: [
+            'Sonntag',
+            'Montag',
+            'Dienstag',
+            "Mittwoch",
+            'Donnerstag',
+            'Freitag',
+            'Samstag'
+        ]
     },
 };
 
@@ -442,16 +448,8 @@ async function getMensaID(mensaName) {
     }
 }
 
-function weekday(date) {
-    var weekday = new Date(date).getDay();
-
-    if (weekday == 0) return ("Sonntag");
-    if (weekday == 1) return ("Montag");
-    if (weekday == 2) return ("Dienstag");
-    if (weekday == 3) return ("Mittwoch");
-    if (weekday == 4) return ("Donnerstag");
-    if (weekday == 5) return ("Freitag");
-    if (weekday == 6) return ("Samstag");
+function weekday(date, requestAttributes) {
+    requestAttributes.t('WEEKDAYS')[new Date(date).getDay()]
 }
 
 function capitalize(s) {
