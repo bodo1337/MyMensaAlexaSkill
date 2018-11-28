@@ -35,9 +35,8 @@ const GetCityIntentHandler = {
             responseBuilder
         } = handlerInput;
         const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
-        //TODO Auch mit Ja und Nein und string-similarity
         let citySlot = requestEnvelope.request.intent.slots.city.value;
-
+        //TODO Auch mit Ja und Nein und string-similarity
         let response;
         if (citySlot[citySlot.length - 1] == '.' || citySlot[citySlot.length - 1] == '!' || citySlot[citySlot.length - 1] == '?') {
             citySlot = citySlot.slice(0, -1);
@@ -45,26 +44,22 @@ const GetCityIntentHandler = {
 
         await mensaInCity(citySlot, requestAttributes).then((res) => {
             if (res.length == 0) {
-                response = `Ich habe leider keine Mensa in ${citySlot} gefunden.`;
+                response = requestAttributes.t('NO_MENSA_FOUND_1') + citySlot + requestAttributes.t('NO_MENSA_FOUND_2');
             } else {
-                let allMensas = "";
-                for (let i = 0; i < res.length; i++) {
-                    if (i == res.length - 1) {
-                        allMensas = allMensas + res[i].name.replace(/\,/g, "");
-                    } else {
-                        allMensas = allMensas + res[i].name.replace(/\,/g, "") + ", ";
-                    }
-                }
+                let allMensas = res.map(function (item) {
+                    return item.name;
+                }).join(', ');
+
                 if (res.length > 5) {
                     //TODO CARD TO ALEXA
-                    response = "Ich habe " + res.length + " Mensen für deine Stadt gefunden. Ich habe Sie an deine Alexa App gesendet. Du kannst deine Mensa festlegen indem du sagst: Alexa, sage My Mensa meine Mensa heißt <break time='100ms'/> und dann deine Mensa nennst";
+                    response = requestAttributes.t('MENSA_L_1') + res.length + requestAttributes.t('MENSA_L_2');
                 } else {
-                    response = "Ich konnte folgende Mensen finden: " + allMensas + ". Sag meine Mensa heißt <break time='100ms'/> und dann deine Mensa um sie festzulegen. <break time='300ms'/> Wie heißt deine Mensa?";
+                    response = requestAttributes.t('MENSA_S_1') + allMensas + requestAttributes.t('MENSA_S_2');
                 }
             }
         }).catch((err) => {
             logEvent(handlerInput);
-            response = "Es ist ein Fehler aufgetreten!";
+            response = err;
         });
 
         return responseBuilder
@@ -89,7 +84,7 @@ const GetMensaIntentHandler = {
         let mensaNameSlot = requestEnvelope.request.intent.slots.mensaName.value;
 
         let response;
-        await getMensaID(mensaNameSlot).then((res) => { //TODO ERROR HANDLING
+        await getMensaID(mensaNameSlot).then((res) => {
             handlerInput.attributesManager.setSessionAttributes({
                 'mensaID': res.id
             });
@@ -384,7 +379,7 @@ const deData = {
     translation: {
         LAUNCH: 'Willkommen bei MyMensa. Hier bekommst du den aktuellen Speiseplan für deine Mensa.',
         DEFAULT_REPROMPT: 'Wie kann ich dir helfen?',
-        HELP_MESSAGE: 'Du kannst sagen, „Wie ist der UV Index“, oder du kannst „Beenden“ sagen... Wie kann ich dir helfen?',
+        HELP_MESSAGE: 'Du kannst sagen, „Wie ist der UV Index“, oder du kannst „Beenden“ sagen... Wie kann ich dir helfen?',//TODO
         ERROR_MESSAGE: 'Das habe ich leider nicht verstanden. Bitte versuche es noch einmal.',
         STOP_MESSAGE: 'Bis zum nächsten mal!',
         MENSA_NOT_SET: 'Du hast noch nicht deine Mensa ausgewählt. Du kannst deine Mensa auswählen indem du sagst: Meine Mensa liegt in <break time="100ms"/> und dann deine Stadt nennst. <break time="300ms"/> Wo liegt deine Mensa?',
@@ -395,8 +390,12 @@ const deData = {
         CONFIRMATION_2: '. Ist das richtig?',
         MENSA_SAVE_SUCCESS: 'Deine Mensa wurde gespeichert. Du kannst jetzt nach deinem aktuellen Speiseplan fragen.',
         MENSA_DECLINED: 'Mensa nicht gespeichert.',
-        NO_MENSA_FOUND1: '',
-        NO_MENSA_FOUND2: '',
+        NO_MENSA_FOUND_1: 'Ich habe leider keine Mensa in ',
+        NO_MENSA_FOUND2_: ' gefunden.',
+        MENSA_S_1: 'Ich konnte folgende Mensen finden: ',
+        MENSA_S_2: '. Sag meine Mensa heißt <break time="100ms"/> und dann deine Mensa um sie festzulegen. <break time="300ms"/> Wie heißt deine Mensa?',
+        MENSA_L_1: 'Ich habe ',
+        MENSA_L_2: ' Mensen für deine Stadt gefunden. Ich habe Sie an deine Alexa App gesendet. Du kannst deine Mensa festlegen indem du sagst: Alexa, sage My Mensa meine Mensa heißt <break time="100ms"/> und dann deine Mensa nennst.',
         WEEKDAYS: [
             'Sonntag',
             'Montag',
@@ -411,7 +410,7 @@ const deData = {
 
 const dedeData = {
     translation: {
-        SKILL_NAME: 'UV-Index auf Deutsch',
+        SKILL_NAME: 'My Mensa auf Deutsch',
     },
 };
 
