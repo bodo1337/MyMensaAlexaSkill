@@ -2,7 +2,7 @@
   "deploy_settings": {
     "default": {
       "skill_id": "amzn1.ask.skill.0aa6211e-3132-4ddf-b411-663202ccb75f",
-      "was_cloned": true,
+      "was_cloned": false,
       "resources": {
         "manifest": {
           "eTag": "c247e5907b855fd280acf2c410597385"
@@ -14,13 +14,16 @@
         },
         "lambda": [
           {
-            "arn": "arn:aws:lambda:eu-west-1:072338859594:function:MyMensaLambda",
-            "awsRegion": "us-east-1",
-            "functionName": "arn:aws:lambda:eu-west-1:072338859594:function:MyMensaLambda",
             "alexaUsage": [
               "custom/default"
             ],
-            "revisionId": "51569e15-78ca-4d70-840a-6c4010029fd9"
+            "arn": "arn:aws:lambda:eu-west-1:072338859594:function:MyMensaLambda",
+            "awsRegion": "eu-west-1",
+            "codeUri": ".\\lambda\\eu-west-1_MyMensaLambda",
+            "functionName": "arn:aws:lambda:eu-west-1:072338859594:function:MyMensaLambda",
+            "handler": "index.handler",
+            "revisionId": "81218621-209e-496e-8f54-a3d6f5118700",
+            "runtime": "nodejs8.10"
           }
         ]
       },

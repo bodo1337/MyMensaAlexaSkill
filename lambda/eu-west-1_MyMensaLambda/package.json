@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "alexa-sdk": "^1.0.25",
-	"string-similarity": "^2.0.0"
+    "ask-sdk-core": "^2.3.0",
+    "ask-sdk-dynamodb-persistence-adapter": "^2.3.0",
+    "ask-sdk-model": "^1.9.0",
+    "axios": "^0.18.0",
+    "i18next": "^12.1.0",
+    "i18next-sprintf-postprocessor": "^0.2.2",
+    "string-similarity": "^2.0.0"
   }
 }
