@@ -37,7 +37,7 @@ const GetCityIntentHandler = {
         const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
         let citySlot = requestEnvelope.request.intent.slots.city.value;
 
-        let response = "e";
+        let response;
         if (citySlot[citySlot.length - 1] == '.' || citySlot[citySlot.length - 1] == '!' || citySlot[citySlot.length - 1] == '?') {
             citySlot = citySlot.slice(0, -1);
         }
