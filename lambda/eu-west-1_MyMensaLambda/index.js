@@ -63,11 +63,9 @@ const GetCityIntentHandler = {
                 }
             }
         }).catch((err) => {
-            //TODO LOGS + NAchricht
+            logEvent(handlerInput);
             response = "Es ist ein Fehler aufgetreten!";
         });
-
-
 
         return responseBuilder
             .speak(response)
@@ -97,6 +95,7 @@ const GetMensaIntentHandler = {
             });
             response = requestAttributes.t('CONFIRMATION_1') + res.name + requestAttributes.t('CONFIRMATION_2');
         }).catch((err) => {
+            logEvent(handlerInput);
             response = err;
         });
 
@@ -141,6 +140,7 @@ const GetMenuIntentHandler = {
                     response = requestAttributes.t('DAY_MEAL_1') + weekday(dateSlot, requestAttributes) + requestAttributes.t('DAY_MEAL_2') + res;
                 }
             }).catch((err) => {
+                logEvent(handlerInput);
                 response = err;
             });
         } else {
@@ -263,7 +263,7 @@ const ErrorHandler = {
     },
     handle(handlerInput, error) {
         const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
-        console.log(`Error handled: ${error.message}`);
+        console.log(`Error handled in ErrorHandler: ${error}`);
 
         return handlerInput.responseBuilder
             .speak(requestAttributes.t('ERROR_MESSAGE'))
@@ -318,7 +318,7 @@ function getMensaMeals(id, date, requestAttributes) {
     })
 }
 
-async function mensaInCity(city, requestAttributes) {
+function mensaInCity(city, requestAttributes) {
     return new Promise(async (resolve, reject) => {
         let counter = 1;
         let allResults = [];
@@ -326,7 +326,7 @@ async function mensaInCity(city, requestAttributes) {
             await axios.get(`http://openmensa.org/api/v2/canteens?page=${counter++}`).then((response) => {
                 allResults = allResults.concat(response.data);
                 if (response.data.length == 0) {
-                    allResults = allResults.filter((mensa) => {
+                    allResults = allResults.filter((mensa) => {//TODO stringsimilarity
                         city = city.toLowerCase();
                         return (mensa.name.toLowerCase().includes(city) || mensa.address.toLowerCase().includes(city) || mensa.city.toLowerCase().includes(city));
                     });
@@ -338,43 +338,34 @@ async function mensaInCity(city, requestAttributes) {
                 reject(requestAttributes.t('ERROR_HARD'));
             });
         }
-
     });
 }
 
-async function getMensaID(mensaName) {
-    try {
-        let stillResults = true;
+function getMensaID(mensaName, requestAttributes) {
+    return new Promise(async (resolve, reject) => {
         let counter = 1;
         let allResults = [];
+        let stillResults = true
         while (stillResults) {
-            let response = await axios.get(`http://openmensa.org/api/v2/canteens?page=${counter}`);
-            counter++;
-            allResults = allResults.concat(response.data)
-            if (response.data.length == 0) {
-                stillResults = false;
-            }
+            await axios.get(`http://openmensa.org/api/v2/canteens?page=${counter++}`).then((response) => {
+                allResults = allResults.concat(response.data)
+                if (response.data.length == 0) stillResults = false;
+            }).catch((error) => {
+                console.error("Error in getMensaID()" + error);
+                reject(requestAttributes.t('ERROR_HARD'));
+            });
         }
-
-        var mensaNames = allResults.map(function (item) {
+        let mensaNames = allResults.map(function (item) {
             return item['name'];
         });
 
         let matches = stringSimilarity.findBestMatch(mensaName, mensaNames);
-        console.log();
         for (let i = 0; i < allResults.length; i++) {
             if (allResults[i].name == matches.bestMatch.target) {
-                return allResults[i];
+                resolve(allResults[i]);
             }
         }
-    } catch (error) {
-        console.error(error);
-        if (error.response.status == "404") {
-            return ("Leider liegen mir für diesen Tag keine Angebote vor."); //TODO
-        } else {
-            return ("Es ist ein Fehler aufgetreten."); //TODO
-        }
-    }
+});
 }
 
 function weekday(date, requestAttributes) {
@@ -383,6 +374,10 @@ function weekday(date, requestAttributes) {
 
 function capitalize(s) {
     return s[0].toUpperCase() + s.slice(1);
+}
+
+function logEvent(handlerInput){
+    console.log('Handler Input: ' + JSON.stringify(handlerInput));
 }
 
 const deData = {

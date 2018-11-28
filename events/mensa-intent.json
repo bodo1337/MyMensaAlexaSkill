@@ -1,0 +1,85 @@
+{
+	"version": "1.0",
+	"session": {
+		"new": false,
+		"sessionId": "amzn1.echo-api.session.3ef15096-914b-4eda-892a-fc98e80c8307",
+		"application": {
+			"applicationId": "amzn1.ask.skill.0aa6211e-3132-4ddf-b411-663202ccb75f"
+		},
+		"user": {
+			"userId": "amzn1.ask.account.AEYCPDLD4R2UYJXX4AZT4OC7TZXNIIGC6GLB2XJSJQWTIOLJ5ZW74J7PZPVJ3IKPDI2DI5RAEUVWEK7HQO5YVR6UTZKZZLAJ4WJSJQXDWIMPXPVZYSNOG6JRD6GVQHWW6URSRGATN5FP6CMDCLRMBL4SX4M66NEMHPGOJEE5VNE6DOHVJJ4HVFGJDWREOUDJQPAQEQB6TRZK3GQ"
+		}
+	},
+	"context": {
+		"System": {
+			"application": {
+				"applicationId": "amzn1.ask.skill.0aa6211e-3132-4ddf-b411-663202ccb75f"
+			},
+			"user": {
+				"userId": "amzn1.ask.account.AEYCPDLD4R2UYJXX4AZT4OC7TZXNIIGC6GLB2XJSJQWTIOLJ5ZW74J7PZPVJ3IKPDI2DI5RAEUVWEK7HQO5YVR6UTZKZZLAJ4WJSJQXDWIMPXPVZYSNOG6JRD6GVQHWW6URSRGATN5FP6CMDCLRMBL4SX4M66NEMHPGOJEE5VNE6DOHVJJ4HVFGJDWREOUDJQPAQEQB6TRZK3GQ"
+			},
+			"device": {
+				"deviceId": "amzn1.ask.device.AEY2REMS56BYAIM6V4PME57SRYMQKASN2RZXGCYXPRJMNB2MDI7AMUZZ326HAF3CMXU3GEE3R7PIA7S6EVNSHVU7Y3TAOJ4HNFKRNJI6WM74COUAAG7XHTSNADJLJZPNDI7RV2EKGOQAVA4E3R72RALRSPDW7WU55BMX5LXJN4LUKHPGZHI24",
+				"supportedInterfaces": {}
+			},
+			"apiEndpoint": "https://api.eu.amazonalexa.com",
+			"apiAccessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjEifQ.eyJhdWQiOiJodHRwczovL2FwaS5hbWF6b25hbGV4YS5jb20iLCJpc3MiOiJBbGV4YVNraWxsS2l0Iiwic3ViIjoiYW16bjEuYXNrLnNraWxsLjBhYTYyMTFlLTMxMzItNGRkZi1iNDExLTY2MzIwMmNjYjc1ZiIsImV4cCI6MTU0MzQyMTU0MSwiaWF0IjoxNTQzNDE3OTQxLCJuYmYiOjE1NDM0MTc5NDEsInByaXZhdGVDbGFpbXMiOnsiY29uc2VudFRva2VuIjpudWxsLCJkZXZpY2VJZCI6ImFtem4xLmFzay5kZXZpY2UuQUVZMlJFTVM1NkJZQUlNNlY0UE1FNTdTUllNUUtBU04yUlpYR0NZWFBSSk1OQjJNREk3QU1VWlozMjZIQUYzQ01YVTNHRUUzUjdQSUE3UzZFVk5TSFZVN1kzVEFPSjRITkZLUk5KSTZXTTc0Q09VQUFHN1hIVFNOQURKTEpaUE5ESTdSVjJFS0dPUUFWQTRFM1I3MlJBTFJTUERXN1dVNTVCTVg1TFhKTjRMVUtIUEdaSEkyNCIsInVzZXJJZCI6ImFtem4xLmFzay5hY2NvdW50LkFFWUNQRExENFIyVVlKWFg0QVpUNE9DN1RaWE5JSUdDNkdMQjJYSlNKUVdUSU9MSjVaVzc0SjdQWlBWSjNJS1BESTJESTVSQUVVVldFSzdIUU81WVZSNlVUWktaWkxBSjRXSlNKUVhEV0lNUFhQVlpZU05PRzZKUkQ2R1ZRSFdXNlVSU1JHQVRONUZQNkNNRENMUk1CTDRTWDRNNjZORU1IUEdPSkVFNVZORTZET0hWSko0SFZGR0pEV1JFT1VESlFQQVFFUUI2VFJaSzNHUSJ9fQ.aSmr0-vnMU5jfzf9NyeORJ8EdkJMxcwILVUOo-3K7DmD2ewv_rRwm5mKlQ9lSF0Jkhzvp3QHYyMpW7UlHO2sjRtdvBYJBHY2_UxANDsa6pAHZANphhjUkPEJT9higlKgTmLtYhH1UF0yVjBjSrzobPeNJwQ4rlRSFM4HulVVw7uSoK3KVd4XFq_ALmgBtK6m40R1v58POPwaUJEEi4RD55Ugzji3bvXhPOcfYJlY-6cICUp8zSmtPWtHTNnOn6Rulq23Y1NlWxtNdQl7b7RSDxA-FLOla7EUPUm1ZMkTgXNu-UOgjxDo8KFEsYPjnT4cobtDWKIoYfpXdW3BCpOe8w"
+		},
+		"Viewport": {
+			"experiences": [
+				{
+					"arcMinuteWidth": 246,
+					"arcMinuteHeight": 144,
+					"canRotate": false,
+					"canResize": false
+				}
+			],
+			"shape": "RECTANGLE",
+			"pixelWidth": 1024,
+			"pixelHeight": 600,
+			"dpi": 160,
+			"currentPixelWidth": 1024,
+			"currentPixelHeight": 600,
+			"touch": [
+				"SINGLE"
+			]
+		}
+	},
+	"request": {
+		"type": "IntentRequest",
+		"requestId": "amzn1.echo-api.request.596d53e1-0cfc-4611-a4b0-431114647ad9",
+		"timestamp": "2018-11-28T15:12:21Z",
+		"locale": "de-DE",
+		"intent": {
+			"name": "GetMensaIntent",
+			"confirmationStatus": "NONE",
+			"slots": {
+				"mensaName": {
+					"name": "mensaName",
+					"value": "Darmstadt schöfferstraße",
+					"resolutions": {
+						"resolutionsPerAuthority": [
+							{
+								"authority": "amzn1.er-authority.echo-sdk.amzn1.ask.skill.0aa6211e-3132-4ddf-b411-663202ccb75f.Mensa_Name_List",
+								"status": {
+									"code": "ER_SUCCESS_MATCH"
+								},
+								"values": [
+									{
+										"value": {
+											"name": "Darmstadt Mensa Schöfferstraße",
+											"id": "8570e354ba7449464368ff8505b4bbdb"
+										}
+									}
+								]
+							}
+						]
+					},
+					"confirmationStatus": "NONE",
+					"source": "USER"
+				}
+			}
+		},
+		"dialogState": "STARTED"
+	}
+}
