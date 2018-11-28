@@ -294,70 +294,6 @@ const LocalizationInterceptor = {
     },
 };
 
-const skillBuilder = Alexa.SkillBuilders.custom();
-
-const deData = {
-    translation: {
-        LAUNCH: 'Willkommen bei MyMensa. Hier bekommst du den aktuellen Speiseplan für deine Mensa.',
-        DEFAULT_REPROMPT: 'Wie kann ich dir helfen?',
-        HELP_MESSAGE: 'Du kannst sagen, „Wie ist der UV Index“, oder du kannst „Beenden“ sagen... Wie kann ich dir helfen?',
-        ERROR_MESSAGE: 'Das habe ich leider nicht verstanden. Bitte versuche es noch einmal.',
-        STOP_MESSAGE: 'Bis zum nächsten mal!',
-        MENSA_NOT_SET: 'Du hast noch nicht deine Mensa ausgewählt. Du kannst deine Mensa auswählen indem du sagst: Meine Mensa liegt in <break time="100ms"/> und dann deine Stadt nennst. <break time="300ms"/> Wo liegt deine Mensa?',
-        TODAY_MEAL: 'Heute gibt es: ',
-        DAY_MEAL_1: 'Am ',
-        DAY_MEAL_2: ' gibt es: ',
-        CONFIRMATION_1: 'Der Name deiner Mensa ist also: ',
-        CONFIRMATION_2: '. Ist das richtig?',
-        MENSA_SAVE_SUCCESS: 'Deine Mensa wurde gespeichert. Du kannst jetzt nach deinem aktuellen Speiseplan fragen.',
-        MENSA_DECLINED: 'Mensa nicht gespeichert.',
-        NO_MENSA_FOUND1: '',
-        NO_MENSA_FOUND2: '',
-        WEEKDAYS: [
-            'Sonntag',
-            'Montag',
-            'Dienstag',
-            "Mittwoch",
-            'Donnerstag',
-            'Freitag',
-            'Samstag'
-        ]
-    },
-};
-
-const dedeData = {
-    translation: {
-        SKILL_NAME: 'UV-Index auf Deutsch',
-    },
-};
-
-const languageStrings = {
-    'de': deData,
-    'de-DE': dedeData
-};
-
-exports.handler = skillBuilder
-    .addRequestHandlers(
-        LaunchRequestHandler,
-        GetCityIntentHandler,
-        GetMensaIntentHandler,
-        GetMenuIntentHandler,
-        YesIntentHandler,
-        NoIntentHandler,
-        HelpIntentHandler,
-        CancelAndStopIntentHandler,
-        SessionEndedRequestHandler
-    )
-    .addRequestInterceptors(LocalizationInterceptor)
-    .addErrorHandlers(ErrorHandler)
-    .withApiClient(new Alexa.DefaultApiClient())
-    .withPersistenceAdapter(new DynamoDbPersistenceAdapter({
-        tableName: 'MyMensaDB',
-        partitionKeyName: 'userId',
-        createTable: true
-    }))
-    .lambda();
-
 function getMensaMeals(id, date) {
     return new Promise((resolve, reject) => {
         axios.get(`https://openmensa.org/api/v2/canteens/${id}/days/${date}/meals`).then((response) => {
@@ -455,3 +391,67 @@ function weekday(date, requestAttributes) {
 function capitalize(s) {
     return s[0].toUpperCase() + s.slice(1);
 }
+
+const deData = {
+    translation: {
+        LAUNCH: 'Willkommen bei MyMensa. Hier bekommst du den aktuellen Speiseplan für deine Mensa.',
+        DEFAULT_REPROMPT: 'Wie kann ich dir helfen?',
+        HELP_MESSAGE: 'Du kannst sagen, „Wie ist der UV Index“, oder du kannst „Beenden“ sagen... Wie kann ich dir helfen?',
+        ERROR_MESSAGE: 'Das habe ich leider nicht verstanden. Bitte versuche es noch einmal.',
+        STOP_MESSAGE: 'Bis zum nächsten mal!',
+        MENSA_NOT_SET: 'Du hast noch nicht deine Mensa ausgewählt. Du kannst deine Mensa auswählen indem du sagst: Meine Mensa liegt in <break time="100ms"/> und dann deine Stadt nennst. <break time="300ms"/> Wo liegt deine Mensa?',
+        TODAY_MEAL: 'Heute gibt es: ',
+        DAY_MEAL_1: 'Am ',
+        DAY_MEAL_2: ' gibt es: ',
+        CONFIRMATION_1: 'Der Name deiner Mensa ist also: ',
+        CONFIRMATION_2: '. Ist das richtig?',
+        MENSA_SAVE_SUCCESS: 'Deine Mensa wurde gespeichert. Du kannst jetzt nach deinem aktuellen Speiseplan fragen.',
+        MENSA_DECLINED: 'Mensa nicht gespeichert.',
+        NO_MENSA_FOUND1: '',
+        NO_MENSA_FOUND2: '',
+        WEEKDAYS: [
+            'Sonntag',
+            'Montag',
+            'Dienstag',
+            "Mittwoch",
+            'Donnerstag',
+            'Freitag',
+            'Samstag'
+        ]
+    },
+};
+
+const dedeData = {
+    translation: {
+        SKILL_NAME: 'UV-Index auf Deutsch',
+    },
+};
+
+const languageStrings = {
+    'de': deData,
+    'de-DE': dedeData
+};
+
+const skillBuilder = Alexa.SkillBuilders.custom();
+
+exports.handler = skillBuilder
+    .addRequestHandlers(
+        LaunchRequestHandler,
+        GetCityIntentHandler,
+        GetMensaIntentHandler,
+        GetMenuIntentHandler,
+        YesIntentHandler,
+        NoIntentHandler,
+        HelpIntentHandler,
+        CancelAndStopIntentHandler,
+        SessionEndedRequestHandler
+    )
+    .addRequestInterceptors(LocalizationInterceptor)
+    .addErrorHandlers(ErrorHandler)
+    .withApiClient(new Alexa.DefaultApiClient())
+    .withPersistenceAdapter(new DynamoDbPersistenceAdapter({
+        tableName: 'MyMensaDB',
+        partitionKeyName: 'userId',
+        createTable: true
+    }))
+    .lambda();
