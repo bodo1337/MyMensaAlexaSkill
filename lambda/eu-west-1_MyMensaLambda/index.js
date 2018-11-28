@@ -385,7 +385,7 @@ async function getMensaID(mensaName) {
 }
 
 function weekday(date, requestAttributes) {
-    requestAttributes.t('WEEKDAYS')[new Date(date).getDay()]
+    return requestAttributes.t('WEEKDAYS')[new Date(date).getDay()]
 }
 
 function capitalize(s) {
@@ -451,7 +451,6 @@ exports.handler = skillBuilder
     .withApiClient(new Alexa.DefaultApiClient())
     .withPersistenceAdapter(new DynamoDbPersistenceAdapter({
         tableName: 'MyMensaDB',
-        partitionKeyName: 'userId',
-        createTable: true
+        partitionKeyName: 'userId'
     }))
     .lambda();
