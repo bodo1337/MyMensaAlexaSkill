@@ -137,7 +137,7 @@ const GetMenuIntentHandler = {
                 if (today == dateSlot) {
                     response = requestAttributes.t('TODAY_MEAL') + res;
                 } else {
-                    response = requestAttributes.t('DAY_MEAL_1') + weekday(dateSlot) + requestAttributes.t('DAY_MEAL_2') + res;
+                    response = requestAttributes.t('DAY_MEAL_1') + weekday(dateSlot, requestAttributes) + requestAttributes.t('DAY_MEAL_2') + res;
                 }
             }).catch((err) => {
                 response = err;
@@ -288,9 +288,6 @@ const LocalizationInterceptor = {
                 postProcess: 'sprintf',
                 sprintf: values,
             });
-            if (Array.isArray(value)) {
-                return value[Math.floor(Math.random() * value.length)];
-            }
             return value;
         };
         const attributes = handlerInput.attributesManager.getRequestAttributes();
@@ -299,63 +296,6 @@ const LocalizationInterceptor = {
         };
     },
 };
-
-const skillBuilder = Alexa.SkillBuilders.custom();
-
-const deData = {
-    translation: {
-        LAUNCH: 'Willkommen bei MyMensa. Hier bekommst du den aktuellen Speiseplan für deine Mensa.',
-        DEFAULT_REPROMPT: 'Wie kann ich dir helfen?',
-        HELP_MESSAGE: 'Du kannst sagen, „Wie ist der UV Index“, oder du kannst „Beenden“ sagen... Wie kann ich dir helfen?',
-        ERROR_MESSAGE: 'Das habe ich leider nicht verstanden. Bitte versuche es noch einmal.',
-        STOP_MESSAGE: 'Bis zum nächsten mal!',
-        MENSA_NOT_SET: 'Du hast noch nicht deine Mensa ausgewählt. Du kannst deine Mensa auswählen indem du sagst: Meine Mensa liegt in <break time="100ms"/> und dann deine Stadt nennst. <break time="300ms"/> Wo liegt deine Mensa?',
-        TODAY_MEAL: 'Heute gibt es: ',
-        DAY_MEAL_1: 'Am ',
-        DAY_MEAL_2: ' gibt es: ',
-        CONFIRMATION_1: 'Der Name deiner Mensa ist also: ',
-        CONFIRMATION_2: '. Ist das richtig?',
-        MENSA_SAVE_SUCCESS: 'Deine Mensa wurde gespeichert. Du kannst jetzt nach deinem aktuellen Speiseplan fragen.',
-        MENSA_DECLINED: 'Mensa nicht gespeichert.',
-        NO_MENSA_FOUND1: '',
-        NO_MENSA_FOUND2: '',
-        NO_MEALS_ON_DATE: 'Leider liegen mir für diesen Tag keine Angebote vor.',
-        ERROR_HARD: 'Es ist ein Fehler aufgetreten.'
-    },
-};
-
-const dedeData = {
-    translation: {
-        SKILL_NAME: 'UV-Index auf Deutsch',
-    },
-};
-
-const languageStrings = {
-    'de': deData,
-    'de-DE': dedeData
-};
-
-exports.handler = skillBuilder
-    .addRequestHandlers(
-        LaunchRequestHandler,
-        GetCityIntentHandler,
-        GetMensaIntentHandler,
-        GetMenuIntentHandler,
-        YesIntentHandler,
-        NoIntentHandler,
-        HelpIntentHandler,
-        CancelAndStopIntentHandler,
-        SessionEndedRequestHandler
-    )
-    .addRequestInterceptors(LocalizationInterceptor)
-    .addErrorHandlers(ErrorHandler)
-    .withApiClient(new Alexa.DefaultApiClient())
-    .withPersistenceAdapter(new DynamoDbPersistenceAdapter({
-        tableName: 'MyMensaDB',
-        partitionKeyName: 'userId',
-        createTable: true
-    }))
-    .lambda();
 
 function getMensaMeals(id, date, requestAttributes) {
     return new Promise((resolve, reject) => {
@@ -449,18 +389,73 @@ async function getMensaID(mensaName) {
     }
 }
 
-function weekday(date) {
-    var weekday = new Date(date).getDay();
-
-    if (weekday == 0) return ("Sonntag");
-    if (weekday == 1) return ("Montag");
-    if (weekday == 2) return ("Dienstag");
-    if (weekday == 3) return ("Mittwoch");
-    if (weekday == 4) return ("Donnerstag");
-    if (weekday == 5) return ("Freitag");
-    if (weekday == 6) return ("Samstag");
+function weekday(date, requestAttributes) {
+    return requestAttributes.t('WEEKDAYS')[new Date(date).getDay()]
 }
 
 function capitalize(s) {
     return s[0].toUpperCase() + s.slice(1);
 }
+
+const deData = {
+    translation: {
+        LAUNCH: 'Willkommen bei MyMensa. Hier bekommst du den aktuellen Speiseplan für deine Mensa.',
+        DEFAULT_REPROMPT: 'Wie kann ich dir helfen?',
+        HELP_MESSAGE: 'Du kannst sagen, „Wie ist der UV Index“, oder du kannst „Beenden“ sagen... Wie kann ich dir helfen?',
+        ERROR_MESSAGE: 'Das habe ich leider nicht verstanden. Bitte versuche es noch einmal.',
+        STOP_MESSAGE: 'Bis zum nächsten mal!',
+        MENSA_NOT_SET: 'Du hast noch nicht deine Mensa ausgewählt. Du kannst deine Mensa auswählen indem du sagst: Meine Mensa liegt in <break time="100ms"/> und dann deine Stadt nennst. <break time="300ms"/> Wo liegt deine Mensa?',
+        TODAY_MEAL: 'Heute gibt es: ',
+        DAY_MEAL_1: 'Am ',
+        DAY_MEAL_2: ' gibt es: ',
+        CONFIRMATION_1: 'Der Name deiner Mensa ist also: ',
+        CONFIRMATION_2: '. Ist das richtig?',
+        MENSA_SAVE_SUCCESS: 'Deine Mensa wurde gespeichert. Du kannst jetzt nach deinem aktuellen Speiseplan fragen.',
+        MENSA_DECLINED: 'Mensa nicht gespeichert.',
+        NO_MENSA_FOUND1: '',
+        NO_MENSA_FOUND2: '',
+        WEEKDAYS: [
+            'Sonntag',
+            'Montag',
+            'Dienstag',
+            "Mittwoch",
+            'Donnerstag',
+            'Freitag',
+            'Samstag'
+        ]
+    },
+};
+
+const dedeData = {
+    translation: {
+        SKILL_NAME: 'UV-Index auf Deutsch',
+    },
+};
+
+const languageStrings = {
+    'de': deData,
+    'de-DE': dedeData
+};
+
+const skillBuilder = Alexa.SkillBuilders.custom();
+
+exports.handler = skillBuilder
+    .addRequestHandlers(
+        LaunchRequestHandler,
+        GetCityIntentHandler,
+        GetMensaIntentHandler,
+        GetMenuIntentHandler,
+        YesIntentHandler,
+        NoIntentHandler,
+        HelpIntentHandler,
+        CancelAndStopIntentHandler,
+        SessionEndedRequestHandler
+    )
+    .addRequestInterceptors(LocalizationInterceptor)
+    .addErrorHandlers(ErrorHandler)
+    .withApiClient(new Alexa.DefaultApiClient())
+    .withPersistenceAdapter(new DynamoDbPersistenceAdapter({
+        tableName: 'MyMensaDB',
+        partitionKeyName: 'userId'
+    }))
+    .lambda();
