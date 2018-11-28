@@ -22,7 +22,7 @@
             "codeUri": ".\\lambda\\eu-west-1_MyMensaLambda",
             "functionName": "arn:aws:lambda:eu-west-1:072338859594:function:MyMensaLambda",
             "handler": "index.handler",
-            "revisionId": "81218621-209e-496e-8f54-a3d6f5118700",
+            "revisionId": "00ebdec4-f244-4b99-818b-2e56f2c2210d",
             "runtime": "nodejs8.10"
           }
         ]

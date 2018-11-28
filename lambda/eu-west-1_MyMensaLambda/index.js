@@ -55,6 +55,7 @@ const GetCityIntentHandler = {
                     }
                 }
                 if (res.length > 5) {
+                    //TODO CARD TO ALEXA
                     response = "Ich habe " + res.length + " Mensen für deine Stadt gefunden. Ich habe Sie an deine Alexa App gesendet. Du kannst deine Mensa festlegen indem du sagst: Alexa, sage My Mensa meine Mensa heißt <break time='100ms'/> und dann deine Mensa nennst";
                 } else {
                     response = "Ich konnte folgende Mensen finden: " + allMensas + ". Sag meine Mensa heißt <break time='100ms'/> und dann deine Mensa um sie festzulegen. <break time='300ms'/> Wie heißt deine Mensa?";
@@ -132,13 +133,15 @@ const GetMenuIntentHandler = {
         let attributes = await attributesManager.getPersistentAttributes();
 
         if (attributes.mensaID && attributes.mensaID > 0) {
-            await getMensaMeals(attributes.mensaID, dateSlot).then((res) => { //TODO ERROR CATCH
+            await getMensaMeals(attributes.mensaID, dateSlot, requestAttributes).then((res) => { //TODO ERROR CATCH
                 if (today == dateSlot) {
                     response = requestAttributes.t('TODAY_MEAL') + res;
                 } else {
                     response = requestAttributes.t('DAY_MEAL_1') + weekday(dateSlot) + requestAttributes.t('DAY_MEAL_2') + res;
                 }
-            })
+            }).catch((err) => {
+                response = err;
+            });
         } else {
             response = requestAttributes.t('MENSA_NOT_SET')
             return responseBuilder
@@ -315,7 +318,9 @@ const deData = {
         MENSA_SAVE_SUCCESS: 'Deine Mensa wurde gespeichert. Du kannst jetzt nach deinem aktuellen Speiseplan fragen.',
         MENSA_DECLINED: 'Mensa nicht gespeichert.',
         NO_MENSA_FOUND1: '',
-        NO_MENSA_FOUND2: ''
+        NO_MENSA_FOUND2: '',
+        NO_MEALS_ON_DATE: 'Leider liegen mir für diesen Tag keine Angebote vor.',
+        ERROR_HARD: 'Es ist ein Fehler aufgetreten.'
     },
 };
 
@@ -352,16 +357,17 @@ exports.handler = skillBuilder
     }))
     .lambda();
 
-function getMensaMeals(id, date) {
+function getMensaMeals(id, date, requestAttributes) {
     return new Promise((resolve, reject) => {
         axios.get(`https://openmensa.org/api/v2/canteens/${id}/days/${date}/meals`).then((response) => {
             let mealNames = response.data.map(function (item) {
                 return item['name'];
             });
-            let mealsString = "";
+            //TODO better solution
             for (let i = 0; i < mealNames.length; i++) {
                 let mealName = mealNames[i];
                 mealName = mealName.replace(/\,/g, "");
+                
                 if (i == 0) {
                     mealsString = mealName;
                 } else {
@@ -373,11 +379,12 @@ function getMensaMeals(id, date) {
             }
             resolve(mealsString);
         }).catch((error) => {
-            console.log(error);
+            console.log("ERROR in getMensaMeals: ", error);
+            console.log("ID: " + id + " date: " + date);
             if (error.response.status == "404") {
-                reject(new Error("Leider liegen mir für diesen Tag keine Angebote vor."));
+                reject(requestAttributes.t('NO_MEALS_ON_DATE'));
             } else {
-                reject(new Error("Es ist ein Fehler aufgetreten."));
+                reject(requestAttributes.t('ERROR_HARD'));
             }
         });
     })
