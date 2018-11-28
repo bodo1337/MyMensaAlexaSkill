@@ -29,19 +29,19 @@ const GetCityIntentHandler = {
         return request.type === 'IntentRequest' && request.intent.name === 'GetCityIntent';
     },
     async handle(handlerInput) {
+        logEvent(handlerInput);
         const {
             requestEnvelope,
-            serviceClientFactory,
             responseBuilder
         } = handlerInput;
         const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
         let citySlot = requestEnvelope.request.intent.slots.city.value;
-        //TODO Auch mit Ja und Nein und string-similarity
-        let response;
+
+        let response = "e";
         if (citySlot[citySlot.length - 1] == '.' || citySlot[citySlot.length - 1] == '!' || citySlot[citySlot.length - 1] == '?') {
             citySlot = citySlot.slice(0, -1);
         }
-
+        
         await mensaInCity(citySlot, requestAttributes).then((res) => {
             if (res.length == 0) {
                 response = requestAttributes.t('NO_MENSA_FOUND_1') + citySlot + requestAttributes.t('NO_MENSA_FOUND_2');
@@ -51,20 +51,24 @@ const GetCityIntentHandler = {
                 }).join(', ');
 
                 if (res.length > 5) {
-                    //TODO CARD TO ALEXA
                     response = requestAttributes.t('MENSA_L_1') + res.length + requestAttributes.t('MENSA_L_2');
                 } else {
                     response = requestAttributes.t('MENSA_S_1') + allMensas + requestAttributes.t('MENSA_S_2');
                 }
+                return responseBuilder
+                        .speak(response)
+                        .withSimpleCard(requestAttributes.t('MENSA_IN') + capitalize(citySlot), requestAttributes.t('MENSA_TUT') + '\n\n' + allMensas.replace(/\,/g,"\n"))
+                        .reprompt(requestAttributes.t('DEFAULT_REPROMPT'))
+                        .getResponse();
             }
         }).catch((err) => {
             logEvent(handlerInput);
             response = err;
         });
-
+        
         return responseBuilder
             .speak(response)
-            .reprompt(requestAttributes.t('DEFAULT_REPROMPT'))
+            .reprompt(response)
             .getResponse();
     }
 };
@@ -246,7 +250,7 @@ const SessionEndedRequestHandler = {
     },
     handle(handlerInput) {
         console.log(`Session ended with reason: ${handlerInput.requestEnvelope.request.reason}`);
-        console.log(`Handler Input: ${handlerInput}`);
+        console.log(`Handler Input: ` + JSON.stringify(handlerInput));
 
         return handlerInput.responseBuilder.getResponse();
     },
@@ -313,11 +317,13 @@ function getMensaMeals(id, date, requestAttributes) {
     })
 }
 
-function mensaInCity(city, requestAttributes) {
+async function mensaInCity(city, requestAttributes) {
     return new Promise(async (resolve, reject) => {
         let counter = 1;
         let allResults = [];
-        while (true) {
+        let stillResults = true;
+        while (stillResults) {
+            console.log(1);
             await axios.get(`http://openmensa.org/api/v2/canteens?page=${counter++}`).then((response) => {
                 allResults = allResults.concat(response.data);
                 if (response.data.length == 0) {
@@ -325,14 +331,16 @@ function mensaInCity(city, requestAttributes) {
                         city = city.toLowerCase();
                         return (mensa.name.toLowerCase().includes(city) || mensa.address.toLowerCase().includes(city) || mensa.city.toLowerCase().includes(city));
                     });
-                    resolve(allResults);
+                    stillResults = false;
                 }
             }).catch((error) => {
+                console.log(4);
                 console.error("error in mensainCity(): " + error);
                 console.log("City: " + city);
                 reject(requestAttributes.t('ERROR_HARD'));
             });
         }
+        resolve(allResults);
     });
 }
 
@@ -379,7 +387,7 @@ const deData = {
     translation: {
         LAUNCH: 'Willkommen bei MyMensa. Hier bekommst du den aktuellen Speiseplan für deine Mensa.',
         DEFAULT_REPROMPT: 'Wie kann ich dir helfen?',
-        HELP_MESSAGE: 'Du kannst sagen, „Wie ist der UV Index“, oder du kannst „Beenden“ sagen... Wie kann ich dir helfen?',//TODO
+        HELP_MESSAGE: 'Bei mir bekommst du deinen Speiseplan deiner Mensa. Wenn du noch nicht deine Mensa ausgewählt hast geht das indem du folgendes sagst: Meine Mensa liegt in <break time="100ms"/> und dann deine Stadt nennst. Daraufhin bekommst eine Liste mit den dir verfügbaren Mensen. Deine Mensa kannst du festlegen indem du folgendes sagst: meine Mensa heißt <break time="100ms"/> und dann deine Mensa nennst. Wenn du deine Mensa ausgewählt hast kannst du mich fragen was es heute oder an einem anderen Tag zu essen gibt.',
         ERROR_MESSAGE: 'Das habe ich leider nicht verstanden. Bitte versuche es noch einmal.',
         STOP_MESSAGE: 'Bis zum nächsten mal!',
         MENSA_NOT_SET: 'Du hast noch nicht deine Mensa ausgewählt. Du kannst deine Mensa auswählen indem du sagst: Meine Mensa liegt in <break time="100ms"/> und dann deine Stadt nennst. <break time="300ms"/> Wo liegt deine Mensa?',
@@ -395,7 +403,9 @@ const deData = {
         MENSA_S_1: 'Ich konnte folgende Mensen finden: ',
         MENSA_S_2: '. Sag meine Mensa heißt <break time="100ms"/> und dann deine Mensa um sie festzulegen. <break time="300ms"/> Wie heißt deine Mensa?',
         MENSA_L_1: 'Ich habe ',
-        MENSA_L_2: ' Mensen für deine Stadt gefunden. Ich habe Sie an deine Alexa App gesendet. Du kannst deine Mensa festlegen indem du sagst: Alexa, sage My Mensa meine Mensa heißt <break time="100ms"/> und dann deine Mensa nennst.',
+        MENSA_L_2: ' Mensen für deine Stadt gefunden. Ich habe Sie an deine Alexa App gesendet. Du kannst deine Mensa festlegen indem du sagst: Alexa, sag My Mensa meine Mensa heißt <break time="100ms"/> und dann deine Mensa nennst.',
+        MENSA_IN: 'Mensen in ',
+        MENSA_TUT: 'Du kannst deine Mensa festlegen indem du sagst: "Alexa, sag My Mensa meine Mensa heißt (Dein Mensa Name)"',
         WEEKDAYS: [
             'Sonntag',
             'Montag',
