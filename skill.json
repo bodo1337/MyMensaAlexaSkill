@@ -6,8 +6,8 @@
           "summary": "Mit MyMensa bekommst du die Speisekarten von über 450 Mensen frisch auf dein Alexa.",
           "examplePhrases": [
             "Alexa, starte my Mensa.",
-            "Alexa, starte My Mensa und sage meine mensa liegt in darmstadt.",
-            "Alexa, starte My Mensa und frage was es heute zu essen gibt."
+            "Alexa, sage My Mensa meine mensa liegt in Darmstadt.",
+            "Alexa, frage My Mensa was es heute zu essen gibt."
           ],
           "keywords": [
             "mensa",
