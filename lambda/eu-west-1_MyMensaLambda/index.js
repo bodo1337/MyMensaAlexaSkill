@@ -44,7 +44,7 @@ const GetCityIntentHandler = {
         
         await mensaInCity(citySlot, requestAttributes).then((res) => {
             if (res.length == 0) {
-                response = requestAttributes.t('NO_MENSA_FOUND_1') + citySlot + requestAttributes.t('NO_MENSA_FOUND_2');
+                response = requestAttributes.t('NO_MENSA_FOUND_1') + citySlot + capitalize(requestAttributes.t('NO_MENSA_FOUND_2'));
             } else {
                 let allMensas = res.map(function (item) {
                     return item.name;
@@ -394,12 +394,13 @@ const deData = {
         TODAY_MEAL: 'Heute gibt es: ',
         DAY_MEAL_1: 'Am ',
         DAY_MEAL_2: ' gibt es: ',
+        NO_MEALS_ON_DATE: 'Leider liegen mir für diesen Tag keine Angebote vor.',
         CONFIRMATION_1: 'Der Name deiner Mensa ist also: ',
         CONFIRMATION_2: '. Ist das richtig?',
         MENSA_SAVE_SUCCESS: 'Deine Mensa wurde gespeichert. Du kannst jetzt nach deinem aktuellen Speiseplan fragen.',
-        MENSA_DECLINED: 'Mensa nicht gespeichert.',
+        MENSA_DECLINED: 'Mensa nicht gespeichert. Was kann ich sonst für dich tun?',
         NO_MENSA_FOUND_1: 'Ich habe leider keine Mensa in ',
-        NO_MENSA_FOUND2_: ' gefunden.',
+        NO_MENSA_FOUND_2: ' gefunden. Was kann ich sonst für dich tun?',
         MENSA_S_1: 'Ich konnte folgende Mensen finden: ',
         MENSA_S_2: '. Sag meine Mensa heißt <break time="100ms"/> und dann deine Mensa um sie festzulegen. <break time="300ms"/> Wie heißt deine Mensa?',
         MENSA_L_1: 'Ich habe ',
